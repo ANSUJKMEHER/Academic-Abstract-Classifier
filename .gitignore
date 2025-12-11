@@ -1,0 +1,13 @@
+# Ignore model folder
+models/
+
+# Ignore Python environment
+.venv/
+venv/
+
+# Cache files
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
