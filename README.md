@@ -66,8 +66,9 @@ Academic-Classifier/
 ├── requirements.txt
 └── README.md
 
----
+```
 
+---
 ## 🔧 Installation & Setup Guide  
 
 ### 1️⃣ Clone the Repository
