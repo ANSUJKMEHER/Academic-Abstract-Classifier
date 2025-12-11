@@ -37,7 +37,7 @@ This classifier is useful for:
 - Fully reproducible training workflow  
 
 ---
-
+```
 ## 📁 Project Folder Structure  
 Below is the **exact folder structure**, fully formatted for README.md:
 Academic-Classifier/
