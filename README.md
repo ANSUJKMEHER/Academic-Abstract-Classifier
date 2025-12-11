@@ -1,287 +1,192 @@
 
 
+---
+
+# Academic Abstract Classifier
+
+A machine learning project that automatically classifies research abstracts into four academic domains:
+**Artificial Intelligence**, **Business Research**, **Healthcare Research**, and **Environmental Science**.  
+The system uses a fine-tuned **DistilBERT Transformer model**, a **Flask backend**, and a clean **web interface** for easy testing.
 
 ---
 
-Academic Abstract Classifier
+## 1. Project Overview
+This project aims to simplify academic text categorization by leveraging Natural Language Processing (NLP).  
+Users can paste a research abstract, and the model predicts the most likely research domain along with a confidence score.
 
-A full-stack Machine Learning project that classifies research abstracts into four major academic fields:
-
-Artificial Intelligence
-
-Business Research
-
-Healthcare Research
-
-Environmental Science
-
-
-This project includes:
-
-A custom-trained DistilBERT model (Transformer-based)
-
-A Flask backend API
-
-A clean, modern HTML/CSS frontend
-
-A complete dataset pipeline using ArXiv API
-
-Fully reproducible training code with tokenization, class-balancing, weighted loss, evaluation, and inference
-
-
+The pipeline includes:
+- Dataset collection from **ArXiv API**
+- Preprocessing & structured dataset creation
+- Tokenization and label encoding
+- Transformer model fine-tuning (DistilBERT)
+- Weighted training for class imbalance
+- Flask inference API
+- HTML/CSS frontend for interaction
 
 ---
 
-🚀 Features
-
-Classifies any academic abstract into 1 of 4 categories
-
-Modern UI with confidence bar
-
-Flask API backend that loads model locally
-
-Custom tokenizer + model from Hugging Face Transformers
-
-Trained on 8000+ ArXiv abstracts
-
-Balanced training using class weights
-
-Evaluation metrics: Accuracy, F1-Score, Confusion Matrix
-
-
+## 2. Features
+- End-to-end ML pipeline (data → model → deployment)
+- Balanced training with class-weights
+- Saved model with label map for reproducible inference
+- Lightweight Flask API
+- Modern interface with gradient theme and confidence bar
+- Reproducible code structure
 
 ---
 
-📁 Project Structure
+## 3. Folder Structure
 
-Academic-Classifier/
-│
-├── models/
-│     └── abstract_classifier/     ← Your trained model folder (not uploaded to GitHub)
-│
-├── src/
-│     ├── flask_app.py             ← Flask backend API
-│     ├── infer_local.py           ← Local testing script
-│     └── __init__.py
-│
-├── templates/
-│     └── index.html               ← Frontend HTML
-│
-├── static/
-│     └── style.css                ← Frontend CSS
-│
-├── requirements.txt               ← Python dependencies
-└── README.md
-
+Academic-Classifier/ │ ├── models/ │     └── abstract_classifier/     ← (Add your trained model here) │ ├── src/ │     ├── flask_app.py             ← Backend API │     ├── infer_local.py           ← CLI testing script │     └── init.py │ ├── templates/ │     └── index.html               ← Frontend UI │ ├── static/ │     └── style.css                ← UI styling │ ├── data/ (optional) │ ├── requirements.txt └── README.md
 
 ---
 
-📦 Installation
+## 4. Installation & Setup
 
-1️⃣ Clone the repository
-
-git clone https://github.com/yourusername/Academic-Classifier.git
+### Step 1 — Clone Repository
+```bash
+git clone https://github.com/<your-username>/Academic-Classifier.git
 cd Academic-Classifier
 
-2️⃣ Create Virtual Environment
+Step 2 — Create Virtual Environment
 
 python -m venv .venv
-source .venv/Scripts/activate        # Windows
-# OR
-source .venv/bin/activate           # Mac/Linux
 
-3️⃣ Install dependencies
+Activate:
+
+Windows:
+
+.venv\Scripts\activate
+
+Mac/Linux:
+
+source .venv/bin/activate
+
+Step 3 — Install Required Libraries
 
 pip install -r requirements.txt
 
-4️⃣ Add Your Model
+Step 4 — Add Model Files
 
-Place your trained model folder here:
+Place your trained model inside:
 
-Academic-Classifier/models/abstract_classifier/
+models/abstract_classifier/
 
-Must contain:
+This folder must include:
 
-config.json
-
-model.safetensors
+model.safetensors / pytorch_model.bin
 
 tokenizer.json
 
-tokenizer_config.json
+config.json
 
 vocab.txt
 
-special_tokens_map.json
-
 label_map.json
+
+special_tokens_map.json
 
 
 
 ---
 
-⚙️ Running the Backend (Flask API)
+5. Running the Application
+
+Start the Flask server:
 
 cd src
 python flask_app.py
 
-Server starts at:
+Open the app in a browser:
 
-http://127.0.0.1:5000/
+http://127.0.0.1:5000
 
-
----
-
-🖥️ Frontend Usage
-
-The frontend contains:
-
-A banner section
-
-A text-area to paste abstracts
-
-A "Classify" button
-
-A "Clear" button
-
-A confidence progress bar
-
-Clean gradient background
-
-
-Just open:
-
-http://localhost:5000
-
-Paste an academic abstract → click Classify → result appears instantly.
+Paste an abstract → click Classify → get prediction & confidence.
 
 
 ---
 
-📘 Dataset Collection
+6. Training Summary (Model Building)
 
-Dataset is collected using the ArXiv API:
+The project fine-tuned DistilBERT using the following cells:
 
-2000 abstracts for AI
+Cell A: Load dataset, tokenize text, map labels, compute class weights
 
-2000 for Healthcare
+Cell B: Configure TrainingArguments (batch size, learning rate, epochs, evaluation strategy)
 
-2000 for Business
+Cell C: Build a custom WeightedTrainer to apply weighted loss
 
-2000 for Environmental Science
+Cell D: Train model, evaluate, save checkpoints, generate reports
 
 
-All combined into:
+Final validation accuracy achieved: ~78%
 
-arxiv_combined_8000.csv
 
-Each record contains:
+---
 
-title
+7. Tech Stack
 
-abstract
+Machine Learning
 
-categories
+Hugging Face Transformers
 
-field (label)
+Tokenizers
+
+PyTorch
+
+Evaluate (accuracy, F1)
+
+
+Backend
+
+Flask
+
+JSON API
+
+
+Frontend
+
+HTML5
+
+CSS3
+
+Fetch API (JavaScript)
 
 
 
 ---
 
-🔧 Model Training Pipeline
+8. How to Test the Model
 
-Training involves four main stages:
+Example input:
 
-1️⃣ Tokenization & Label Encoding
+This work introduces a transformer-based framework to improve few-shot learning
+performance across multiple AI benchmark datasets.
 
-tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-tokenized = ds.map(tokenize_fn)
-
-2️⃣ Model Initialization
-
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME,
-    num_labels=len(labels)
-)
-
-3️⃣ Weighted Training (Handling Class Imbalance)
-
-loss_fct = torch.nn.CrossEntropyLoss(weight=class_weights)
-
-4️⃣ Evaluation
-
-Metrics used:
-
-Accuracy
-
-Macro F1 Score
-
-Confusion Matrix
-
-
-
----
-
-📊 Model Results
-
-Metric	Score
-
-Validation Accuracy	~78%
-Macro F1-score	~0.78
-Train Loss	~0.43
-
-
-The model performs reliably across all four academic domains.
-
-
----
-
-🧪 Local Testing Script
-
-Run inference without UI:
-
-python src/infer_local.py
-
-
----
-
-🧠 Example Test Input
-
-This research proposes a transformer-based deep learning method for improving computer vision tasks such as object detection and semantic segmentation.
-
-Output:
+Expected output:
 
 Predicted Field: Artificial Intelligence
-Confidence: 92.7%
+Confidence: ~92%
 
 
 ---
 
-📌 Future Improvements
+9. Notes
 
-Deploy on Hugging Face Spaces / Render / AWS
+Do not push large model files to GitHub.
 
-Add more categories (Physics, Finance, Biology, etc.)
+The repository includes the entire pipeline, UI, and backend but excludes the trained model.
 
-Improve accuracy with RoBERTa / BERT-large
-
-Add dataset visualization dashboard
+Works on both CPU and GPU (GPU strongly recommended for training).
 
 
 
 ---
 
-📄 License
+10. License
 
-This project is for academic and educational use.
-
-
----
-
-🤝 Contributing
-
-Pull requests and improvements are welcome!
+This project is intended for academic and educational use.
+Modify or extend it as needed for your course or research.
 
 
 ---
