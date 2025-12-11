@@ -30,7 +30,7 @@ This project includes data collection, preprocessing, training, evaluation, and 
 
 ## 📁 Project Folder Structure
 
-```
+
 Academic-Classifier/
 │
 ├── models/
