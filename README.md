@@ -11,7 +11,7 @@ It uses a **fine-tuned DistilBERT transformer model** to classify abstracts into
 - Artificial Intelligence (AI)
 - Business Research
 - Healthcare Research
-- Environmental Science
+- Environmental Sciences
 
 This project includes data collection, preprocessing, training, evaluation, and deployment through a **Flask backend API** and a clean **HTML/CSS frontend**.
 
